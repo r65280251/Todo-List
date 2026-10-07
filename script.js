@@ -13,12 +13,12 @@ let todos = [{
 },
 {
     id: Date.now() + 2,
-    text: "Revision Web dev",
+    text: "Revision Time",
     isCompleted: false
 },
 {
     id: Date.now() + 3,
-    text: "Take Class",
+    text: "Running",
     isCompleted: false
 }
 ]
