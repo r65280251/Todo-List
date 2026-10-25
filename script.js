@@ -6,22 +6,7 @@ const taskCount = document.querySelector("#task-count")
 const cancelEditButton = document.querySelector("#cancel-edit-btn")
 const completeCount = document.querySelector("#completed-count")
 
-let todos = [{
-    id: Date.now() + 1,
-    text: "go to gym",
-    isCompleted: true
-},
-{
-    id: Date.now() + 2,
-    text: "Revision Time",
-    isCompleted: false
-},
-{
-    id: Date.now() + 3,
-    text: "Running",
-    isCompleted: false
-}
-]
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
 let editTodoId = null;
 
@@ -47,6 +32,10 @@ todoForm.addEventListener("submit", (e) => {
             }
             return todo
         })
+
+        localStorage.setItem("todos", JSON.stringify(todos))
+
+
     } else {
         let newTodo = {
             id: Date.now(),
@@ -54,6 +43,7 @@ todoForm.addEventListener("submit", (e) => {
             isCompleted: false
         }
         todos.push(newTodo)
+        localStorage.setItem("todos", JSON.stringify(todos))
     }
     todoInput.value = ""
     renderTodo()
@@ -116,6 +106,7 @@ todoList.addEventListener("click", (e) => {
             }
             return todo
         })
+        localStorage.setItem("todos", JSON.stringify(todos))
         renderTodo()
         cancelEdit()
     
@@ -129,6 +120,8 @@ function deleteTodo(id) {
             return todo
         }
     })
+
+    localStorage.setItem("todos", JSON.stringify(todos))
     renderTodo()
     cancelEdit()
     
